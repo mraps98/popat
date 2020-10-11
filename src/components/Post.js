@@ -125,7 +125,7 @@ function Post({ id, username, userPhotoUrl, text, timestamp }) {
                 <div className="post__commentCreator">
                     <form>
                         <Input placeholder="Write a comment" value={comment} onChange={(e)=>setComment(e.target.value)}/>
-                        <Button type="submit" onClick={postComment}>Post</Button>
+                        <Button disabled={!comment} type="submit" onClick={postComment}>Post</Button>
                     </form>
 
                 </div>

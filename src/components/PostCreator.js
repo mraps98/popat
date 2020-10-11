@@ -19,7 +19,7 @@ function PostCreator() {
                 <form>
                     <Avatar src={currentUser.userPhotoUrl}/>
                     <Input placeholder="Express yourself" value={input} onChange={(e) => setInput(e.target.value)} />
-                    <Button type="submit" onClick={handlePostButtonClicked}>Post</Button>
+                    <Button disabled={!input} type="submit" onClick={handlePostButtonClicked}>Post</Button>
                 </form>
             </div>
         )
