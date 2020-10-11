@@ -63,3 +63,7 @@
 .post__commentText{
     color: rgba(20, 20, 20, 0.75);
 }
+
+.post__commentsCounter, .post__likesCounter{
+    margin-right: 10px;
+}

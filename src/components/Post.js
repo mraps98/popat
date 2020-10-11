@@ -15,6 +15,7 @@ function Post({ id, username, userPhotoUrl, text, timestamp }) {
         .orderBy("timestamp", "desc")
         .onSnapshot(snapshot=>{
             setComments(snapshot.docs.map(doc=>doc.data()));
+            setCommentsCount(snapshot.docs.length);
         });
     }, []);
 
@@ -30,11 +31,29 @@ function Post({ id, username, userPhotoUrl, text, timestamp }) {
         })
     },[]);
 
+    useEffect(()=>{
+        db.collection("posts")
+        .doc(id)
+        .collection("likes")
+        .onSnapshot(snapshot=>{
+            let count = 0
+            snapshot.docs.forEach(doc=>{
+                console.log(doc.data().liked);
+                if(doc.data().liked === true){
+                    count++;
+                }
+            });
+            setLikesCount(count);
+        });
+    },[])
+
     const currentUser = useSelector(state=>state);
     const [commentsModalOpen, setCommentsModalOpen] = useState(false);
     const [postLiked, setPostLiked] = useState(false);
     const [comments, setComments] = useState([]);
     const [comment, setComment] = useState("");
+    const [likesCount, setLikesCount] = useState("");
+    const [commentsCount, setCommentsCount] = useState("");
     
     const postComment = (e) => {
         e.preventDefault();
@@ -71,23 +90,6 @@ function Post({ id, username, userPhotoUrl, text, timestamp }) {
                 liked: false,
             })
         }
-
-        // if(!postLiked){
-        //     db.collection("posts")
-        //     .doc(id)
-        //     .collection("likes")
-        //     .add({uid: currentUser.uid, username: currentUser.username, liked: true})
-        //     .catch(error=>console.log(error));
-        // }else{
-        //     db.collection("posts")
-        //     .doc(id)
-        //     .collection("likes")
-        //     .update({
-        //         uid: currentUser.uid,
-        //         username: currentUser.username,
-        //         liked: false
-        //     })
-        // }
     }
 
     return (
@@ -108,9 +110,11 @@ function Post({ id, username, userPhotoUrl, text, timestamp }) {
                 </p>
                 <div className="post__options">
                     <IconButton onClick={handleLikeButtonClicked}>
-                        {postLiked? <Favorite /> : <FavoriteBorder />}
+                        <span className="post__likesCounter">{likesCount}</span>
+                         {postLiked? <Favorite /> : <FavoriteBorder />}
                     </IconButton>
                     <IconButton onClick={()=>setCommentsModalOpen(true)}>
+                        <span className="post__commentsCounter">{commentsCount}</span>
                         <ChatBubbleOutline />
                     </IconButton>
                 </div>
