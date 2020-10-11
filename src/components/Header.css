@@ -1,0 +1,7 @@
+.header{
+    display: flex;
+    justify-content: space-between;
+    background-color: hsla(100, 50%, 80%, 0.9);
+    padding: 10px;
+    z-index: 1;
+}

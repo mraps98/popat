@@ -1,0 +1,65 @@
+.post{
+    background-color: white;
+    margin-top: 10px;
+    padding: 10px;
+    width: 100%;
+}
+
+.post__top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.post__topLeft{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.post__text{
+    margin: 10px;
+}
+
+.post__options{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.post__topLeft > .MuiAvatar-root{
+    margin-right: 10px;
+}
+
+.post__comments{
+    background-color: hsla(100, 50%, 90%, 0.9);
+    padding: 10px
+}
+
+.post__comment{
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.post__commentCreator{
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.post__commentsDisplay{
+    padding: 10px;
+    max-height: 500px;
+    overflow-y: scroll;
+}
+
+.post__commentUsername{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.post__commentText{
+    color: rgba(20, 20, 20, 0.75);
+}

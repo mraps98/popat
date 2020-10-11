@@ -1,0 +1,16 @@
+.home{
+    display: flex;
+    flex-direction: column;
+}
+
+.home__top{
+    position: sticky;
+    top: 0;
+}
+
+.home__bottom{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
